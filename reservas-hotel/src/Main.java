@@ -1,20 +1,26 @@
-import controller.ReservasController;
-import repositories.ReservasRepository;
+import model.Habitacion;
+import model.Huesped;
 
 public class Main {
     public static void main(String[] args) {
-        ReservasController controller = new ReservasController();
 
-        controller.realizarReserva(101, "Sher Maestre");
-        controller.realizarReserva(102, "Jose Maestre");
-        controller.realizarReserva(101, "Asli Maestre");
-        controller.realizarReserva(106, "John Doe");
+        Habitacion habitacion101 = new Habitacion(101);
 
-        controller.mostrarReservas();
+        Huesped juan = new Huesped("Juan");
+        Huesped maria = new Huesped("Maria");
+        Huesped pedro = new Huesped("Pedro");
 
-        controller.cancelarReserva(101);
+        habitacion101.addObserver(juan);
+        habitacion101.addObserver(maria);
+        habitacion101.addObserver(pedro);
 
-        controller.mostrarReservas();
+        System.out.println("=== Evento: Reservar habitación ===");
+        habitacion101.asignarHuesped(pedro);
 
+        System.out.println("\n--- Maria ya no quiere recibir notificaciones ---");
+        habitacion101.removeObserver(maria);
+
+        System.out.println("\n=== Evento: Liberar habitación ===");
+        habitacion101.liberarHabitacion();
     }
 }

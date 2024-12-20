@@ -17,6 +17,7 @@ public class GestorReservasService {
     public boolean realizarReserva(int numeroHabitacion, String nombreHuesped) {
         Habitacion habitacion = new Habitacion(numeroHabitacion);
         Huesped huesped = new Huesped(nombreHuesped);
+
         return repositorio.agregarReserva(habitacion, huesped);
     }
 
